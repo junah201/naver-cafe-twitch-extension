@@ -1,60 +1,61 @@
-html {
-  background-color: white;
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: flex-start;
-  align-content: flex-start;
-  margin-left: 3rem;
-  padding: 1rem;
-  max-width: 24rem;
+.panel {
+	width: 400px;
+	margin: 50px auto;
+	padding: 20px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	text-align: center;
+	background-color: #ffffff;
+	color: #000000;
 }
 
-.forms-table {
-  margin-left: 8px;
-  margin-right: 8px;
-  text-align: left;
-  padding: 8px;
-  border: 1px solid #03c75a;
-  text-decoration: none;
-  border-collapse: separate;
-  border-spacing: 0 10px;
-}
-
-.form-control {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  margin: 4px;
-  padding: 4px;
-}
-
-.form-control label {
-  flex-grow: 1;
-}
-
-p {
-  display: block;
-  padding: 4px;
-  margin: 4px;
+h1 {
+	color: #03c75a;
+	font-size: 24px;
+	margin-bottom: 20px;
 }
 
 label {
-  cursor: default;
+	display: block;
+	margin-bottom: 10px;
+	color: #000000;
 }
 
-input,
-select {
-  border: 0;
-  padding: 8px;
-  margin: 8px;
-  border-bottom: 0.125rem solid #f5a623;
-  text-align: right;
-  color: inherit;
+input[type="text"] {
+	width: 100%;
+	padding: 6px;
+	margin-bottom: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
 }
 
 button {
-  padding: 8px;
-  margin: 8px;
+	display: block;
+	width: 100%;
+	padding: 8px 16px;
+	background-color: #03c75a;
+	color: #ffffff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+	margin-bottom: 10px;
+}
+
+select {
+	width: 100%;
+	padding: 5px;
+	margin-bottom: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+#selectButton {
+	background-color: #f5a623;
+}
+
+span {
+	display: block;
+	margin-bottom: 10px;
+	color: #000000;
 }

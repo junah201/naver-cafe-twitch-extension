@@ -1,28 +1,36 @@
 <!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="config.css" />
-    <title>Document</title>
-  </head>
-  <body>
-    <script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
-    <script src="config.js" type="text/javascript"></script>
-    <div class="forms-table">
-      <p class="form-control">
-        <label>패널 제목</label>
-        <input id="title-input" type="text" value="Naver Cafe" />
-      </p>
-      <p class="form-control">
-        <label>검색 키워드</label>
-        <input id="keyword-input" type="text" />
-      </p>
-      <p class="form-control">
-        <label id="save-label"></label>
-        <button id="save-button" class>저장하기</button>
-      </p>
-    </div>
-  </body>
+<html>
+	<head>
+		<title>패널</title>
+		<link rel="stylesheet" type="text/css" href="config.css" />
+	</head>
+	<body>
+		<div class="panel">
+			<h1>Naver Cafe - Twitch Extension</h1>
+			<div>
+				<label>사용자들에게 표시될 상단명을 입력하세요</label>
+				<input type="text" id="titleInput" placeholder="제목을 입력하세요" />
+			</div>
+			<div>
+				<label
+					>카페ID를 입력해주세요. <br />ex) https://cafe.naver.com/robird =>
+					robird</label
+				>
+				<input type="text" id="cafeNameInput" placeholder="robird" />
+			</div>
+			<div>
+				<button id="fetchButton">게시판 목록 가져오기</button>
+			</div>
+			<div>
+				<select id="boardSelect">
+					<option value="">게시판 선택</option>
+					<!-- 여기에 동적으로 board 옵션을 추가할 수 있습니다 -->
+				</select>
+			</div>
+			<button id="selectButton">저장하기</button>
+			<span id="alert"></span>
+		</div>
+		<script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
+		<script src="config.js" type="text/javascript"></script>
+	</body>
 </html>

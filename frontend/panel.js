@@ -1,58 +1,59 @@
-const url = `https://navercafe-backend.herokuapp.com`;
+const url = `https://port-0-naver-cafe-twitch-extension-otjl2cli1ot5ff.sel4.cloudtype.app`;
 
 window.Twitch.ext.onAuthorized(function (params) {
-  const channelId = params.channelId;
-  console.log(channelId);
+	const channelId = params.channelId;
+	console.log(channelId);
 
-  function reloadItem() {
-    fetch(`${url}/naver?channel_id=${channelId}`, {
-      method: "GET",
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        for (var idx of data.items.keys()) {
-          const item = document.getElementById(idx);
-          if (item == null) {
-            const table = document.getElementById("table");
-            if (idx == 0) {
-              table.innerHTML += `<div class = "item" id = ${idx}><a href = ${data.items[idx].link} target="_blank">${data.items[idx].title}</a></div>`;
-            } else {
-              table.innerHTML += `</br><div class = "item" id = ${idx}><a href = ${data.items[idx].link} target="_blank">${data.items[idx].title}</a></div>`;
-            }
-          } else {
-            item.innerHTML = `<a href = ${data.items[idx].link} target="_blank">${data.items[idx].title}</a>`;
-          }
-          console.log(data.items[idx]);
-        }
-        var t = document.getElementById(0);
-      });
-    console.log("reloading");
-  }
+	function reloadItem() {
+		fetch(`${url}/${channelId}/posts`, {
+			method: "GET",
+		})
+			.then((res) => {
+				return res.json();
+			})
+			.then((data) => {
+				for (const idx in data) {
+					const item = document.getElementById(idx);
+					if (item == null) {
+						const table = document.getElementById("table");
+						console.log(table);
+						if (idx == 0) {
+							table.innerHTML += `<div class = "item" id = ${idx}><a href = ${data[idx].link} target="_blank">${data[idx].title}</a></div>`;
+						} else {
+							table.innerHTML += `<br/><div class = "item" id = ${idx}><a href = ${data[idx].link} target="_blank">${data[idx].title}</a></div>`;
+						}
+					} else {
+						item.innerHTML = `<a href = ${data[idx].link} target="_blank">${data[idx].title}</a>`;
+					}
+					console.log(data[idx]);
+				}
+			});
+	}
 
-  function reloadTitle() {
-    fetch(`${url}/title?channel_id=${channelId}`, {
-      method: "GET",
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        titleH1 = document.getElementById("title");
-        titleH1.innerHTML = data.title;
-      });
-  }
+	function reloadTitle() {
+		fetch(`${url}/${channelId}/config`, {
+			method: "GET",
+		})
+			.then((response) => {
+				return response.json();
+			})
+			.then((data) => {
+				titleH1 = document.getElementById("title");
+				titleH1.innerHTML = data.panel_title;
+				titleA = document.querySelector("#title > a");
+				titleA.href = `https://cafe.naver.com/${data.cafe_name}`;
+			});
+	}
 
-  reloadTitle();
-  reloadItem();
+	reloadTitle();
+	reloadItem();
 
-  refreshButton = document.getElementById("refresh");
-  refreshButton.addEventListener("mousedown", function () {
-    reloadItem();
-    refreshButton.className = "display";
-  });
-  refreshButton.addEventListener("mouseup", function () {
-    refreshButton.className = "undisplay";
-  });
+	refreshButton = document.getElementById("refresh");
+	refreshButton.addEventListener("mousedown", function () {
+		reloadItem();
+		refreshButton.className = "display";
+	});
+	refreshButton.addEventListener("mouseup", function () {
+		refreshButton.className = "undisplay";
+	});
 });
