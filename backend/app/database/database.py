@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.pool import NullPool
 from app.common import config
 
 import pymysql
@@ -8,7 +9,8 @@ import pymysql
 pymysql.install_as_MySQLdb()
 
 engine = create_engine(
-    config.DATABASE_URL
+    config.DATABASE_URL,
+    poolclass=NullPool
 )
 SessionLocal = sessionmaker(
     autocommit=False,
