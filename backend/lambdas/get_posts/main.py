@@ -14,7 +14,10 @@ def lambda_handler(event, context):
             "statusCode": "400",
             "headers": {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Credentials': 'true',
+                'Access-Control-Allow-Methods': '*',
+                'Access-Control-Allow-Headers': '*',
             },
             "body": json.dumps({
                 "message": "'id' is required"
@@ -28,7 +31,10 @@ def lambda_handler(event, context):
             "statusCode": "400",
             "headers": {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Credentials': 'true',
+                'Access-Control-Allow-Methods': '*',
+                'Access-Control-Allow-Headers': '*',
             },
             "body": json.dumps({
                 "message": "'id' must be number"
@@ -53,7 +59,10 @@ def lambda_handler(event, context):
             "statusCode": "404",
             "headers": {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Credentials': 'true',
+                'Access-Control-Allow-Methods': '*',
+                'Access-Control-Allow-Headers': '*',
             },
             "body": json.dumps({
                 "message": "Channel not found"
@@ -100,7 +109,10 @@ def lambda_handler(event, context):
         "statusCode": "200",
         "headers": {
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Credentials': 'true',
+            'Access-Control-Allow-Methods': '*',
+            'Access-Control-Allow-Headers': '*',
         },
         "body": json.dumps(result)
     }
