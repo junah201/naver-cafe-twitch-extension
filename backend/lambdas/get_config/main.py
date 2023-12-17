@@ -57,11 +57,16 @@ def lambda_handler(event, context):
             })
         }
 
+    item = {
+        key: str(value) if isinstance(value, str) else int(value)
+        for key, value in response["Item"].items()
+    }
+
     return {
         "statusCode": "200",
         "headers": {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*'
         },
-        "body": json.dumps(response["Item"])
+        "body": json.dumps(item)
     }
