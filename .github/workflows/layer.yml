@@ -33,7 +33,7 @@ jobs:
       - name: Python files to Zip file
         run: |
           (mv ./venv/lib/python3.10/site-packages/* ${{ inputs.file_path }}/python)
-          (cd ${{ inputs.file_path }}; zip -r ../../Build_${{ inputs.layer_name }}.zip python/)
+          (cd ${{ inputs.file_path }}; zip -r ../../../Build_${{ inputs.layer_name }}.zip python/)
 
       - name: Upload zip file artifact
         uses: actions/upload-artifact@v3

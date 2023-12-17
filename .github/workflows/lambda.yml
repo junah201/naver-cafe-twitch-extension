@@ -25,7 +25,7 @@ jobs:
 
       - name: Python files to Zip file
         run: |
-          (cd ${{ inputs.file_path }}; zip -r9 ../../Build_${{ inputs.lambda_name }}.zip .)
+          (cd ${{ inputs.file_path }}; zip -r9 ../../../Build_${{ inputs.lambda_name }}.zip .)
 
       - name: Upload zip file artifact
         uses: actions/upload-artifact@v3
