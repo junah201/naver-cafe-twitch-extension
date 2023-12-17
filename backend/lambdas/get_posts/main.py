@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 
 
 def lambda_handler(event, context):
-    id = event.get(["pathParameters"], {}).get("id", None)
+    id = event.get("pathParameters", {}).get("id", None)
 
     if not id:
         return {
@@ -73,12 +73,12 @@ def lambda_handler(event, context):
     for i in els:
         result.append(
             {
-                "title":get_title(i.select_one(
+                "title": get_title(i.select_one(
                     "td.td_article > div.board-list > div > a.article").text),
-                "link":f"https://cafe.naver.com{i.select_one('td.td_article > div.board-list > div > a.article').get('href')}",
-                "writer":get_title(i.select_one(
+                "link": f"https://cafe.naver.com{i.select_one('td.td_article > div.board-list > div > a.article').get('href')}",
+                "writer": get_title(i.select_one(
                     'td.td_name > div.pers_nick_area').text),
-                "date":f"{datetime.now().strftime('%Y.%m.%d')} {i.select_one('td.td_date').text}"
+                "date": f"{datetime.now().strftime('%Y.%m.%d')} {i.select_one('td.td_date').text}"
             }
         )
 

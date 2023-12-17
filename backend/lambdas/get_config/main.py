@@ -4,7 +4,7 @@ import boto3
 
 
 def lambda_handler(event, context):
-    id = event.get(["pathParameters"], {}).get("id", None)
+    id = event.get("pathParameters", {}).get("id", None)
 
     if not id:
         return {

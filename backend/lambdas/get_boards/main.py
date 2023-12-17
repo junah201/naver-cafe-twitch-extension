@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 
 
 def lambda_handler(event, context):
-    cafe_name = event.get(["pathParameters"], {}).get("id", None)
+    cafe_name = event.get("pathParameters", {}).get("id", None)
 
     if not cafe_name:
         return {
@@ -56,16 +56,15 @@ def lambda_handler(event, context):
 
         result.append(
             {
-                "cafe_name":cafe_name,
-                "board_name":get_title(i.select_one("a").text),
-                "cafe_id":i.select_one("a").get("href").split(
+                "cafe_name": cafe_name,
+                "board_name": get_title(i.select_one("a").text),
+                "cafe_id": i.select_one("a").get("href").split(
                     "clubid=")[1].split("&")[0],
-                "cafe_menu_id":cafe_menu_id,
-                "cafe_board_type":i.select_one("a").get("href").split(
+                "cafe_menu_id": cafe_menu_id,
+                "cafe_board_type": i.select_one("a").get("href").split(
                     "boardtype=")[1].split("&")[0],
             }
         )
-
 
     return {
         "statusCode": "200",

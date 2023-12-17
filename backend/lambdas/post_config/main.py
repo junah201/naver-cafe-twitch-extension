@@ -4,7 +4,7 @@ import boto3
 
 
 def lambda_handler(event, context):
-    id = event.get(["pathParameters"], {}).get("id", None)
+    id = event.get("pathParameters", {}).get("id", None)
 
     if not id:
         return {
@@ -20,7 +20,8 @@ def lambda_handler(event, context):
 
     body = json.loads(event.get("body", "{}"))
 
-    keys = ["panel_title", "cafe_name", "cafe_id", "cafe_menu_id", "cafe_board_type"]
+    keys = ["panel_title", "cafe_name", "cafe_id",
+            "cafe_menu_id", "cafe_board_type"]
 
     for key in keys:
         if key not in body:
