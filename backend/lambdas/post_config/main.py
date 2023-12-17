@@ -18,6 +18,20 @@ def lambda_handler(event, context):
             })
         }
 
+    try:
+        id = int(id)
+    except ValueError:
+        return {
+            "statusCode": "400",
+            "headers": {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            "body": json.dumps({
+                "message": "'id' must be number"
+            })
+        }
+
     body = json.loads(event.get("body", "{}"))
 
     keys = ["panel_title", "cafe_name", "cafe_id",

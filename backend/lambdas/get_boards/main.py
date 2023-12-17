@@ -19,6 +19,20 @@ def lambda_handler(event, context):
             })
         }
 
+    try:
+        id = int(id)
+    except ValueError:
+        return {
+            "statusCode": "400",
+            "headers": {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            "body": json.dumps({
+                "message": "'id' must be number"
+            })
+        }
+
     result = []
 
     res = requests.get(
