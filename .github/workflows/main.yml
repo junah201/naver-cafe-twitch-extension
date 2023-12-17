@@ -1,0 +1,44 @@
+name: Call Deploy Action
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  Layer_deploy:
+    strategy:
+      matrix:
+        layer: [request_layer]
+        include:
+          - layer: request_layer
+            path: ./layers/requests
+
+    uses: junah201/naver-cafe-twitch-extension/.github/workflows/layer.yml@main
+    with:
+      file_path: ${{ matrix.path }}
+      layer_name: ${{ matrix.layer }}
+    secrets: inherit
+
+  Lambda_deploy:
+    strategy:
+      matrix:
+        lambda: [get_root, get_config, post_config, get_posts, get_boards]
+        include:
+          - lambda: get_root
+            path: ./lambdas/get_root
+          - lambda: get_config
+            path: ./lambdas/get_config
+          - lambda: post_config
+            path: ./lambdas/post_config
+          - lambda: get_posts
+            path: ./lambdas/get_posts
+          - lambda: get_boards
+            path: ./lambdas/get_boards
+
+    uses: junah201/naver-cafe-twitch-extension/.github/workflows/lambda.yml@main
+    with:
+      file_path: ${{ matrix.path }}
+      lambda_name: ${{ matrix.lambda }}
+    secrets: inherit
