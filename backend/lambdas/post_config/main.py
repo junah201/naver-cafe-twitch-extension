@@ -39,6 +39,8 @@ def lambda_handler(event, context):
         }
 
     body = event.get("body", {})
+    if isinstance(body, str):
+        body = json.loads(body)
 
     keys = ["panel_title", "cafe_name", "cafe_id",
             "cafe_menu_id", "cafe_board_type"]
@@ -74,11 +76,6 @@ def lambda_handler(event, context):
         }
     )
 
-    item = {
-        key: str(value) if isinstance(value, str) else int(value)
-        for key, value in response["Item"].items()
-    }
-
     return {
         "statusCode": "200",
         "headers": {
@@ -87,6 +84,5 @@ def lambda_handler(event, context):
             'Access-Control-Allow-Credentials': 'true',
             'Access-Control-Allow-Methods': '*',
             'Access-Control-Allow-Headers': '*',
-        },
-        "body": json.dumps(item)
+        }
     }
